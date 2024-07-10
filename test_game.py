@@ -52,3 +52,7 @@ class TestGame(TestCase):
     def test_2_strikes(self):
         self.generate_question("123")
         self._assert_matched_number(self.game.guess("120"), 2, 0)
+
+    def test_3_balls(self):
+        self.generate_question("123")
+        self._assert_matched_number(self.game.guess("312"), 0, 3)
