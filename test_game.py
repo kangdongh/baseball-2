@@ -11,7 +11,7 @@ class TestGame(TestCase):
         self.assertIsNotNone(self.game)
 
     def test_invalid_answer(self):
-        invalid_inputs = [None, "1234", "12", "12s"]
+        invalid_inputs = [None, "1234", "12", "12s", "121"]
         for invalid_input in invalid_inputs:
             with self.subTest(f"Invalid_Answer_{invalid_input}"):
                 self.assert_illegal_argument_for_answer(invalid_input)
