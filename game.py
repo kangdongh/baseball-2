@@ -23,13 +23,16 @@ class Game:
 
     def guess(self, digits: str):
         self._check_digit_valid(digits)
-        if digits == self._answer:
-            return GameResult(True, 3, 0)
+        strikes_count = self._get_strikes_count(digits)
+        return GameResult(strikes_count == 3, strikes_count, 0)
+
+    def _get_strikes_count(self, digits):
         strikes_count = 0
         for i in range(3):
             if digits[i] == self._answer[i]:
                 strikes_count += 1
-        return GameResult(False, strikes_count, 0)
+        return strikes_count
+
     def _check_digit_valid(self, digits):
         if len(digits) != 3:
             raise TypeError()
