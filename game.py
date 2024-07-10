@@ -13,5 +13,8 @@ class Game:
             raise TypeError()
         if not digits.isdigit():
             raise TypeError()
-        if digits[0] == digits[1] or digits[0] == digits[2] or digits[1] == digits[2]:
+        if self._is_duplicated_digits(digits):
             raise TypeError()
+
+    def _is_duplicated_digits(self, digits):
+        return digits[0] == digits[1] or digits[0] == digits[2] or digits[1] == digits[2]
