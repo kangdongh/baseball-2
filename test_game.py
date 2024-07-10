@@ -35,7 +35,7 @@ class TestGame(TestCase):
             with self.subTest(f"Invalid_Guess_{invalid_input}"):
                 self.assert_illegal_argument_for_guess(invalid_input)
 
-    def _assert_matched_number(self, result, expected_balls, expected_strikes):
+    def _assert_matched_number(self, result, expected_strikes, expected_balls):
         self.assertIsNotNone(result)
         self.assertEqual(result.get_solved(), expected_strikes == 3)
         self.assertEqual(result.get_strikes(), expected_strikes)
@@ -43,8 +43,12 @@ class TestGame(TestCase):
 
     def test_correct_answer(self):
         self.generate_question("123")
-        self._assert_matched_number(self.game.guess("123"), 0, 3)
+        self._assert_matched_number(self.game.guess("123"), 3, 0)
 
     def test_no_digits_matched(self):
         self.generate_question("123")
         self._assert_matched_number(self.game.guess("456"), 0, 0)
+
+    def test_2_strikes(self):
+        self.generate_question("123")
+        self._assert_matched_number(self.game.guess("120"), 2, 0)

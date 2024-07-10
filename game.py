@@ -25,8 +25,11 @@ class Game:
         self._check_digit_valid(digits)
         if digits == self._answer:
             return GameResult(True, 3, 0)
-        else:
-            return GameResult(False, 0, 0)
+        strikes_count = 0
+        for i in range(3):
+            if digits[i] == self._answer[i]:
+                strikes_count += 1
+        return GameResult(False, strikes_count, 0)
     def _check_digit_valid(self, digits):
         if len(digits) != 3:
             raise TypeError()
