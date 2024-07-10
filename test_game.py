@@ -10,6 +10,12 @@ class TestGame(TestCase):
     def test_create(self):
         self.assertIsNotNone(self.game)
 
+    def test_wrong_type_answer(self):
+        self.assertRaises(TypeError, self.game.set_answer, None)
+
+    def test_wrong_type_guess(self):
+        self.assertRaises(TypeError, self.game.guess, None)
+
     def test_wrong_answer_4digits(self):
         self.assertRaises(ValueError, self.game.set_answer, "1234")
 
