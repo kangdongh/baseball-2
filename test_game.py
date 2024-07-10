@@ -26,6 +26,14 @@ class TestGame(TestCase):
         self.assertEqual(result.get_strikes(), 3)
         self.assertEqual(result.get_balls(), 0)
 
+    def test_no_digits_matched(self):
+        self.game.set_answer("123")
+        result: GameResult = self.game.guess("456")
+        self.assertIsNotNone(result)
+        self.assertEqual(result.get_solved(), False)
+        self.assertEqual(result.get_strikes(), 0)
+        self.assertEqual(result.get_balls(), 0)
+
     def assert_illegal_argument_for_answer(self, digits):
         try:
             self.game.set_answer(digits)
