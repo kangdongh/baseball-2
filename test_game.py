@@ -10,23 +10,17 @@ class TestGame(TestCase):
     def test_create(self):
         self.assertIsNotNone(self.game)
 
-    def test_wrong_type_answer(self):
+    def test_invalid_answer(self):
         self.assert_illegal_argument_for_answer(None)
-
-    def test_wrong_type_guess(self):
-        self.assert_illegal_argument_for_guess(None)
-
-    def test_wrong_answer_4digits(self):
         self.assert_illegal_argument_for_answer("1234")
-
-    def test_wrong_answer_2digits(self):
         self.assert_illegal_argument_for_answer("12")
+        self.assert_illegal_argument_for_answer("12s")
 
-    def test_wrong_guess_4digits(self):
+    def test_invalid_guess(self):
+        self.assert_illegal_argument_for_guess(None)
         self.assert_illegal_argument_for_guess("1234")
-
-    def test_wrong_guess_2digits(self):
         self.assert_illegal_argument_for_guess("12")
+        self.assert_illegal_argument_for_guess("12s")
 
     def assert_illegal_argument_for_answer(self, digits):
         try:

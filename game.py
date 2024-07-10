@@ -2,10 +2,14 @@ class Game:
     _answer: str
 
     def set_answer(self, digits: str):
-        if len(digits) != 3:
-            raise TypeError()
+        self._check_digit_valid(digits)
         self._answer = digits
 
     def guess(self, digits: str):
+        self._check_digit_valid(digits)
+
+    def _check_digit_valid(self, digits):
         if len(digits) != 3:
+            raise TypeError()
+        if not digits.isdigit():
             raise TypeError()
