@@ -1,8 +1,17 @@
 class GameResult:
     def __init__(self, solved, strikes, balls):
-        self.solved = solved
-        self.strikes = strikes
-        self.balls = balls
+        self._solved = solved
+        self._strikes = strikes
+        self._balls = balls
+
+    def get_solved(self):
+        return self._solved
+
+    def get_strikes(self):
+        return self._strikes
+
+    def get_balls(self):
+        return self._balls
 
 
 class Game:
@@ -14,7 +23,8 @@ class Game:
 
     def guess(self, digits: str):
         self._check_digit_valid(digits)
-        return GameResult(True, 3, 0)
+        if digits == self._answer:
+            return GameResult(True, 3, 0)
 
     def _check_digit_valid(self, digits):
         if len(digits) != 3:

@@ -22,9 +22,9 @@ class TestGame(TestCase):
         self.game.set_answer("123")
         result: GameResult = self.game.guess("123")
         self.assertIsNotNone(result)
-        self.assertEqual(result.solved, True)
-        self.assertEqual(result.strikes, 3)
-        self.assertEqual(result.balls, 0)
+        self.assertEqual(result.get_solved(), True)
+        self.assertEqual(result.get_strikes(), 3)
+        self.assertEqual(result.get_balls(), 0)
 
     def assert_illegal_argument_for_answer(self, digits):
         try:
