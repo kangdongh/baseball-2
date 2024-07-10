@@ -11,21 +11,33 @@ class TestGame(TestCase):
         self.assertIsNotNone(self.game)
 
     def test_wrong_type_answer(self):
-        self.assertRaises(TypeError, self.game.set_answer, None)
+        self.assert_illegal_argument_for_answer(None)
 
     def test_wrong_type_guess(self):
-        self.assertRaises(TypeError, self.game.guess, None)
+        self.assert_illegal_argument_for_guess(None)
 
     def test_wrong_answer_4digits(self):
-        self.assertRaises(ValueError, self.game.set_answer, "1234")
+        self.assert_illegal_argument_for_answer("1234")
 
     def test_wrong_answer_2digits(self):
-        self.assertRaises(ValueError, self.game.set_answer, "12")
+        self.assert_illegal_argument_for_answer("12")
 
     def test_wrong_guess_4digits(self):
-        self.game.set_answer("123")
-        self.assertRaises(ValueError, self.game.guess, "1234")
+        self.assert_illegal_argument_for_guess("1234")
 
     def test_wrong_guess_2digits(self):
-        self.game.set_answer("123")
-        self.assertRaises(ValueError, self.game.guess, "12")
+        self.assert_illegal_argument_for_guess("12")
+
+    def assert_illegal_argument_for_answer(self, digits):
+        try:
+            self.game.set_answer(digits)
+            self.fail()
+        except TypeError:
+            pass
+
+    def assert_illegal_argument_for_guess(self, digits):
+        try:
+            self.game.guess(digits)
+            self.fail()
+        except TypeError:
+            pass

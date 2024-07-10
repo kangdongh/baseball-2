@@ -3,9 +3,9 @@ class Game:
 
     def set_answer(self, digits: str):
         if len(digits) != 3:
-            raise ValueError()
+            raise TypeError()
         self._answer = digits
 
     def guess(self, digits: str):
         if len(digits) != 3:
-            raise ValueError()
+            raise TypeError()
