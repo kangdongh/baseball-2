@@ -11,16 +11,12 @@ class TestGame(TestCase):
         self.assertIsNotNone(self.game)
 
     def test_invalid_answer(self):
-        self.assert_illegal_argument_for_answer(None)
-        self.assert_illegal_argument_for_answer("1234")
-        self.assert_illegal_argument_for_answer("12")
-        self.assert_illegal_argument_for_answer("12s")
-
-    def test_invalid_guess(self):
-        self.assert_illegal_argument_for_guess(None)
-        self.assert_illegal_argument_for_guess("1234")
-        self.assert_illegal_argument_for_guess("12")
-        self.assert_illegal_argument_for_guess("12s")
+        invalid_inputs = [None, "1234", "12", "12s"]
+        for invalid_input in invalid_inputs:
+            with self.subTest(f"Invalid_Answer_{invalid_input}"):
+                self.assert_illegal_argument_for_answer(invalid_input)
+            with self.subTest(f"Invalid_Guess_{invalid_input}"):
+                self.assert_illegal_argument_for_guess(invalid_input)
 
     def assert_illegal_argument_for_answer(self, digits):
         try:
