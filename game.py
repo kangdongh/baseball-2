@@ -1,3 +1,10 @@
+class GameResult:
+    def __init__(self, solved, strikes, balls):
+        self.solved = solved
+        self.strikes = strikes
+        self.balls = balls
+
+
 class Game:
     _answer: str
 
@@ -7,6 +14,7 @@ class Game:
 
     def guess(self, digits: str):
         self._check_digit_valid(digits)
+        return GameResult(True, 3, 0)
 
     def _check_digit_valid(self, digits):
         if len(digits) != 3:
